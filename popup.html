@@ -14,15 +14,16 @@
                 <span>Notification Lord</span>
             </div>
             <div class="body">
-                <div>
+                <div class="buttonIn">
                     <input type="text" placeholder="Mail to">
+                    <button id="clear">Update</button>
                 </div>
-                <div>
-                <input type="number" placeholder="Frequency (in no. of days)">
+                <div class="buttonIn">
+                     <input type="number" placeholder="Frequency (in no. of days)">
+                     <button id="clear">Enter</button>
                 </div>
-                <div>
+                <div class="buttonIn">
                     <input type="button" value="Generate Table" onclick="GenerateTable()" />
-                    <hr />
                     <div id="dvTable"></div>
                 </div>
             </div>
@@ -34,7 +35,7 @@
     function GenerateTable() {
         //Build an array containing Customer records.
         var customers = new Array();
-        customers.push(["Product Id", "Name", "Price", ""]);
+        customers.push(["Id", "Name", "Price", ""]);
         customers.push([1, "Mobile", "$10"]);
         customers.push([2, "Laptop", "$20"]);
  
