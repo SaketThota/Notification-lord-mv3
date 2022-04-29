@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup</title>
+    <link rel="stylesheet" href="Pop.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-container">
+            <div class="header">
+                <span>Notification Lord</span>
+            </div>
+            <div class="body">
+                <div>
+                    <input type="text" placeholder="Mail to">
+                </div>
+                <div>
+                <input type="number" placeholder="Frequency (in no. of days)">
+                </div>
+                <div>
+                    <input type="button" value="Generate Table" onclick="GenerateTable()" />
+                    <hr />
+                    <div id="dvTable"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    function GenerateTable() {
+        //Build an array containing Customer records.
+        var customers = new Array();
+        customers.push(["Product Id", "Name", "Price", ""]);
+        customers.push([1, "Mobile", "$10"]);
+        customers.push([2, "Laptop", "$20"]);
+ 
+        //Create a HTML Table element.
+        var table = document.createElement("TABLE");
+        table.border = "1";
+ 
+        //Get the count of columns.
+        var columnCount = customers[0].length;
+ 
+        //Add the header row.
+        var row = table.insertRow(-1);
+        for (var i = 0; i < columnCount; i++) {
+            var headerCell = document.createElement("TH");
+            headerCell.innerHTML = customers[0][i];
+            row.appendChild(headerCell);
+        }
+ 
+        //Add the data rows.
+        for (var i = 1; i < customers.length; i++) {
+            row = table.insertRow(-1);
+            for (var j = 0; j + 1 < columnCount; j++) {
+                var cell = row.insertCell(-1);
+                cell.innerHTML = customers[i][j];
+            }
+            var cell = row.insertCell(-1);
+            cell.innerHTML = "";
+            var img = document.createElement('img');
+            img.src = "delete.jpg";
+            cell.appendChild(img);
+        }
+ 
+        var dvTable = document.getElementById("dvTable");
+        dvTable.innerHTML = "";
+        dvTable.appendChild(table);
+    }
+</script>
+</html>
