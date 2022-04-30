@@ -1,8 +1,13 @@
-document.body.style.backgroundColor = 'orange';
+let productPrice = 200
+let productLink = "https://developer.chrome.com/"
+let productName = "Apple 12"
 
+let product = {
+    productLink,
+    productName,
+    productPrice
+}
 
-/*
-1. Amazon, flipkart button after product title.
-2. Button UI
-3. Get the price of the product name, product link, product price.
-*/
+chrome.runtime.sendMessage({ product }, function (response) {
+    console.log(response);
+});

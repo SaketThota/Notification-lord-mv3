@@ -18,7 +18,9 @@
     "content_scripts": [
         {
             "matches": [
-                "https://developer.chrome.com/"
+                "https://developer.chrome.com/*",
+                "https://www.amazon.in/*",
+                "https://example.com/"
             ],
             "js": [
                 "content.js"
