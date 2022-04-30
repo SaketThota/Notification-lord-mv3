@@ -73,5 +73,8 @@ function addProduct(e) {
         productName: productName,
         productPrice: productPrice
     };
+    chrome.runtime.sendMessage({ product }, function (response) {
+        console.log(response);
+    });
     console.log(product);
 }
