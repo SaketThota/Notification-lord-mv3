@@ -1,5 +1,3 @@
-document.body.style.backgroundColor = 'orange';
-
 var nameContainer = document.getElementsByClassName("aMaAEs");
 console.log(nameContainer);
 // document.getElementById("yhB1nd").appendChild(nameContainer);
