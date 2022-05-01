@@ -1,5 +1,5 @@
 var nameContainer = document.getElementsByClassName("aMaAEs");
-console.log(nameContainer);
+// console.log(nameContainer);
 // document.getElementById("yhB1nd").appendChild(nameContainer);
 
 /*
@@ -23,7 +23,7 @@ else productPrices.push(dealPrice);
 // flipkart
 productNames.push(document.querySelector('.B_NuCI'));
 productPrices.push(document.getElementsByClassName('_30jeq3 _16Jk6d')[0]);
-console.log(productNames, productPrices)
+// console.log(productNames, productPrices)
 // myntra
 productNames.push(document.getElementsByClassName('pdp-name')[0]);
 productPrices.push(document.getElementsByClassName('pdp-price')[0]);
@@ -69,12 +69,12 @@ for (let i = 0; i < 3; ++i) {
 
 function addProduct(e) {
     let product = {
-        message: 'product',
+        productLink: '',
         productName: productName,
         productPrice: productPrice
     };
-    chrome.runtime.sendMessage({ product }, function (response) {
-        console.log(response);
+    chrome.runtime.sendMessage(product, function (response) {
+        // console.log(response);
     });
-    console.log(product);
+    // console.log(product);
 }

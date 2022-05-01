@@ -1,3 +1,104 @@
-chrome.action.onClicked.addListener(function (tab) {
-    chrome.action.setTitle({ tabId: tab.id, title: "You are on tab:" + tab.id });
-});
+var tbodyRef = document.querySelector('#productTable');
+
+async function deleteRow(e) {
+    let curName = e.path[2].cells[2].innerText;
+
+    chrome.storage.sync.get(['temp'], function (res) {
+        let products = res.temp;
+
+        products = products.filter((e) => {
+            return ((e.productName != curName) && (curName != 'undefined'));
+        })
+
+        chrome.storage.sync.set({ temp: products }, function () {
+            (async () => {
+                await fillTable();
+            })()
+        });
+    });
+}
+
+async function changePrice(e) {
+    let newValue = e.target.value;
+    let productName = e.path[2].cells[2].innerText;
+
+    chrome.storage.sync.get(['temp'], function (res) {
+        let products = res.temp;
+
+        for (let i = 0; i < products.length; ++i) {
+            if (products[i].productName == productName) {
+                products[i].productPrice = newValue;
+            }
+        }
+
+        chrome.storage.sync.set({ temp: products }, function () {
+            (async () => {
+                await fillTable();
+            })()
+        })
+    })
+}
+
+async function fillTable() {
+    let rowLength = 1;
+    tbodyRef.innerHTML = '';
+    let vis = new Map();
+
+    chrome.storage.sync.get(['temp'], function (res) {
+        let products = res.temp;
+
+        if (products.length) {
+            tbodyRef.style.display = 'block';
+
+            for (cur of products) {
+                let name = cur.productName;
+                let link = cur.productLink;
+                let price = cur.productPrice;
+
+                if (vis[name] == true) continue;
+                vis[name] = 1;
+
+                let newRow = tbodyRef.insertRow();
+                newRow.scope = 'row';
+
+                let fourthCol = newRow.insertCell(0);
+                let deleteBtn = document.createElement('button');
+                deleteBtn.innerHTML = 'Del';
+                deleteBtn.addEventListener('click', (e) => deleteRow(e));
+                deleteBtn.classList.add('btn');
+                deleteBtn.classList.add('btn-danger');
+                deleteBtn.classList.add('fw-bold');
+                fourthCol.appendChild(deleteBtn);
+
+                let thirdCol = newRow.insertCell(0);
+                let aTag = document.createElement('a');
+                aTag.setAttribute('href', link);
+
+                if (name.length > 30)
+                    name = name.slice(0, 30) + '...';
+
+                aTag.innerText = name;
+                thirdCol.appendChild(aTag);
+
+                let secondCol = newRow.insertCell(0);
+                let secondColInput = document.createElement('input');
+                price = price.split('.')[0];
+                secondColInput.value = parseInt(price.replace(/\D/g, ''));
+                secondColInput.addEventListener('change', (e) => changePrice(e));
+                secondCol.appendChild(secondColInput);
+
+                let firstCol = newRow.insertCell(0);
+                let firstColText = document.createTextNode(rowLength);
+                firstCol.appendChild(firstColText);
+
+                rowLength++;
+            }
+        } else {
+            tbodyRef.style.display = 'none';
+        }
+    });
+}
+
+(async () => {
+    await fillTable();
+})()

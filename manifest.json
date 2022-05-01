@@ -19,10 +19,11 @@
         {
             "matches": [
                 "https://developer.chrome.com/",
-                "https://www.amazon.in/",
+                "https://www.amazon.in/*",
                 "https://codeforces.com/*",
                 "https://www.flipkart.com/*",
-                "https://www.myntra.com/*"
+                "https://www.myntra.com/*",
+                "https://example.com/"
             ],
             "js": [
                 "content.js"
