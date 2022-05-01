@@ -1,14 +1,3 @@
-// chrome.runtime.onInstalled.addListener(() => {
-//     console.log("Registered");
-
-//     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-//         chrome.tabs.sendMessage(tabs[0].id, { greeting: "This is from background" }, function (response) {
-//             if (response)
-//                 console.log(response.farewell);
-//         });
-//     });
-// });
-
 let addNewProduct = async (newProduct) => {
     let products = [];
     // console.log(newProduct);

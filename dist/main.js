@@ -1,0 +1,2 @@
+chrome.runtime.onMessage.addListener((async(e,t,r)=>(r("New product received - from bg"),e.productLink=t.tab.url,await(async e=>{let t=[];await chrome.storage.sync.get(["temp"],(r=>{t=r.temp,t.push(e),chrome.storage.sync.set({temp:t},(e=>{}))}))})(e),!0)));
+//# sourceMappingURL=main.js.map
