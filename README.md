@@ -1,11 +1,13 @@
 
 f - frequency
 
+```
 fun(){
 	loop of productsList
 		scrap the current price
 			mail if price is low
 }
+```
 
 setinterval(fun(), f);
 
