@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>Popup</title>
     <link rel="stylesheet" href="popup.css">
 </head>
+
 <body>
     <div class="container">
         <div class="main-container">
@@ -15,33 +17,29 @@
             </div>
             <div class="body">
                 <div class="buttonIn">
-                    <input type="text" placeholder="Mail to">
-                    <button id="clear">Update</button>
+                    <input type="text" placeholder="Mail to" id="mail-id">
+                    <button id="mail-id-btn">Update</button>
                 </div>
                 <div class="buttonIn">
-                     <input type="number" placeholder="Frequency (in no. of days)">
-                     <button id="clear">Enter</button>
+                    <input type="number" placeholder="Frequency (in days)" id="frequency">
+                    <button id="frequency-btn">Set</button>
                 </div>
-                <table id="productTable" class="table table-hover table-info table-striped table-bordered caption-top">
-                    <caption id="products-list-heading">Products List</caption>
-                
-                    <thead class="text-center">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Product</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>100</td>
-                            <td>This is sample product</td>
-                            <td><button class="btn-danger">Remove</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div style="margin-top: 1rem;">
+                    <table id="productTable"
+                        class="table table-hover table-info table-striped table-bordered caption-top">
+                        <!-- <caption id="products-list-heading">Products List</caption> -->
+                        <thead class="text-center">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Product</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
                 <!-- <input type="button" value="Generate Table" onclick="GenerateTable()" /> -->
             </div>
         </div>

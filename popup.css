@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+
 .main-container{
     width: 350px;
     background-color: #06bcfb;
@@ -57,8 +59,8 @@ table img{
 }
 
 .buttonIn button:hover{
-    background-color: white;
-    color: black;
+    background-color: #3f2b96;
+    /* color: black; */
     border: 1px solid #535353;
 }
 
@@ -66,4 +68,28 @@ table{
     width: 100%;
     border-collapse: collapse;
     border-color: white;
+}
+
+#productTable {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: '4rem';
+}
+
+#productTable td, #productTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#productTable tr:nth-child(even){background-color: #a8c0ff;}
+#productTable tr:nth-child(odd){background-color: #a8c0ff;}
+
+#productTable tr:hover {background-color: #87a8fa;}
+
+#productTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #3f2b96;
+  /* color: white; */
 }

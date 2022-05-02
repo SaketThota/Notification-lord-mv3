@@ -1,4 +1,6 @@
 var tbodyRef = document.querySelector('#productTable');
+var mailIdBtn = document.querySelector('#mail-id-btn');
+var frequencyBtn = document.querySelector('#frequency-btn');
 
 async function deleteRow(e) {
     let curName = e.path[2].cells[2].innerText;
@@ -41,7 +43,6 @@ async function changePrice(e) {
 
 async function fillTable() {
     let rowLength = 1;
-    tbodyRef.innerHTML = '';
     let vis = new Map();
 
     chrome.storage.sync.get(['temp'], function (res) {
@@ -82,6 +83,7 @@ async function fillTable() {
 
                 let secondCol = newRow.insertCell(0);
                 let secondColInput = document.createElement('input');
+                secondColInput.style.width = '4rem';
                 price = price.split('.')[0];
                 secondColInput.value = parseInt(price.replace(/\D/g, ''));
                 secondColInput.addEventListener('change', (e) => changePrice(e));
@@ -99,6 +101,41 @@ async function fillTable() {
     });
 }
 
+async function setMail() {
+    chrome.storage.sync.get(['mailId'], (res) => {
+        if (res.mailId) { 
+            document.querySelector('#mail-id').value = res.mailId;
+        }
+    });
+}
+
+async function setFrequency() {
+    chrome.storage.sync.get(['frequency'], (res) => {
+        if (res.frequency) {
+            document.querySelector('#frequency').value = res.frequency;
+        }
+    });
+}
+
+async function getMail() {
+    await chrome.storage.sync.set({ mailId: document.querySelector('#mail-id').value }, (res) => {
+        console.log("Mail-id updated");
+    });
+    await setMail();
+}
+
+async function getFrequency() {
+    await chrome.storage.sync.set({ frequency: parseInt(document.querySelector('#frequency').value) }, (res) => {
+        console.log("Frequency updated");
+    });
+    await setFrequency();
+}
+
+mailIdBtn.addEventListener('click', () => getMail());
+frequencyBtn.addEventListener('click', () => getFrequency());
+
 (async () => {
     await fillTable();
+    await setMail();
+    await setFrequency();
 })()
